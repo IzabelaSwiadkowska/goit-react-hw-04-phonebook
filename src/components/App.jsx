@@ -28,8 +28,8 @@ export const App = () => {
     if (
       contacts.some(
         contact =>
-          contact.name.toLowerCase() === name.toLowerCase() ||
-          contact.number === number
+          contact.name.toLowerCase().trim() === name.toLowerCase().trim() ||
+          contact.number.trim() === number.trim()
       )
     ) {
       alert(`${name} is already in contacts`);
