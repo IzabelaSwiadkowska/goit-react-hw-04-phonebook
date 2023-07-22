@@ -12,11 +12,11 @@ const ContactForm = ({ addContact }) => {
   const labelNumber = nanoid();
 
   const nameChange = e => {
-    setName(e.currentTarget.value.trim());
+    setName(e.currentTarget.value);
   };
 
   const numberChange = e => {
-    setNumber(e.currentTarget.value.trim());
+    setNumber(e.currentTarget.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
