@@ -48,8 +48,9 @@ export const App = () => {
       )
     ) {
       alert(`${name} is already in contacts`);
+    } else {
+      setContacts(contacts => [...contacts, newContact]);
     }
-    setContacts(contacts => [...contacts, newContact]);
   };
 
   const deleteContact = id => {
