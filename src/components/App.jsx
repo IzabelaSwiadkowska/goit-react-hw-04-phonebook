@@ -15,9 +15,24 @@ export const App = () => {
   ]);
   const [filter, setFilter] = useState('');
 
+  const [firstRender, setRender] = useState(true);
+  useEffect(() => {}, []);
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+    if (firstRender) {
+      const contactsFromLocalStorage = localStorage.getItem('contacts');
+
+      if (contactsFromLocalStorage !== 'undefined') {
+        const parsedContacts = JSON.parse(contactsFromLocalStorage);
+
+        if (parsedContacts) {
+          setContacts(parsedContacts);
+        }
+      }
+      setRender(false);
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }, [contacts, firstRender]);
 
   const addContact = ({ name, number }) => {
     const newContact = {
@@ -33,10 +48,8 @@ export const App = () => {
       )
     ) {
       alert(`${name} is already in contacts`);
-      return false;
     }
     setContacts(contacts => [...contacts, newContact]);
-    return true;
   };
 
   const deleteContact = id => {
